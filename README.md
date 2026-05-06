@@ -1,0 +1,588 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Сап-клуб «АЮ АЙ» — Медвежья Луна | Телецкое озеро</title>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;500;600;700;800&family=Playfair+Display:wght@400;600;700&display=swap');
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body { font-family: 'Montserrat', sans-serif; background: #0a0e1a; color: #e0e0e0; line-height: 1.6; }
+        .container { max-width: 1200px; margin: 0 auto; padding: 0 20px; }
+
+        /* Hero */
+        .hero {
+            min-height: 100vh;
+            background: linear-gradient(135deg, #0a0e1a 0%, #1a2a3a 40%, #0d1b2a 100%);
+            position: relative;
+            display: flex; align-items: center; justify-content: center;
+            text-align: center;
+            overflow: hidden;
+        }
+        .hero::before {
+            content: '';
+            position: absolute;
+            top: -50%; left: -50%;
+            width: 200%; height: 200%;
+            background: radial-gradient(ellipse at 30% 50%, rgba(212,175,55,0.08) 0%, transparent 50%),
+                        radial-gradient(ellipse at 70% 30%, rgba(100,180,255,0.05) 0%, transparent 50%);
+            animation: glow 8s ease-in-out infinite alternate;
+        }
+        @keyframes glow {
+            0% { transform: translate(0,0) rotate(0deg); }
+            100% { transform: translate(-30px,-20px) rotate(5deg); }
+        }
+        .hero-content { position: relative; z-index: 1; padding: 20px; }
+        .hero-logo {
+            font-family: 'Playfair Display', serif;
+            font-size: 4.5rem; font-weight: 700;
+            background: linear-gradient(135deg, #d4af37, #f0d68a, #d4af37);
+            -webkit-background-clip: text; -webkit-text-fill-color: transparent;
+            text-shadow: 0 0 60px rgba(212,175,55,0.3);
+            letter-spacing: 4px;
+        }
+        .hero-sub {
+            font-size: 1.3rem; color: #a0b8d0; margin-top: 10px;
+            letter-spacing: 6px; text-transform: uppercase;
+        }
+        .hero-slogan {
+            font-family: 'Playfair Display', serif;
+            font-size: 1.8rem; color: #d4af37; margin-top: 20px;
+            font-style: italic;
+        }
+        .hero-mission {
+            max-width: 700px; margin: 25px auto 0;
+            font-size: 1.05rem; color: #b0c4d8; line-height: 1.7;
+        }
+        .hero-nav { margin-top: 35px; display: flex; gap: 12px; justify-content: center; flex-wrap: wrap; }
+        .hero-nav a {
+            padding: 12px 28px; border: 1px solid rgba(212,175,55,0.3);
+            border-radius: 50px; color: #d4af37; text-decoration: none;
+            font-size: 0.85rem; font-weight: 500; letter-spacing: 1px;
+            transition: all 0.3s; text-transform: uppercase;
+        }
+        .hero-nav a:hover { background: rgba(212,175,55,0.15); border-color: #d4af37; box-shadow: 0 0 25px rgba(212,175,55,0.15); }
+
+        /* Sections */
+        section { padding: 80px 0; }
+        .section-title {
+            font-family: 'Playfair Display', serif;
+            font-size: 2.4rem; text-align: center; margin-bottom: 50px;
+            background: linear-gradient(135deg, #d4af37, #f0d68a);
+            -webkit-background-clip: text; -webkit-text-fill-color: transparent;
+        }
+        .section-title span { -webkit-text-fill-color: #d4af37; }
+
+        /* Gallery */
+        .gallery-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 20px;
+            margin-bottom: 50px;
+        }
+        .gallery-item {
+            border-radius: 16px; overflow: hidden;
+            border: 1px solid rgba(212,175,55,0.15);
+            transition: transform 0.3s, box-shadow 0.3s;
+            position: relative;
+        }
+        .gallery-item:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 15px 40px rgba(212,175,55,0.1);
+        }
+        .gallery-item img {
+            width: 100%; height: 280px; object-fit: cover;
+            display: block;
+        }
+        .gallery-caption {
+            position: absolute; bottom: 0; left: 0; right: 0;
+            background: linear-gradient(transparent, rgba(10,14,26,0.9));
+            padding: 40px 15px 15px;
+            color: #fff; font-size: 0.85rem; font-weight: 500;
+            text-align: center;
+        }
+
+        @media (max-width: 900px) {
+            .gallery-grid { grid-template-columns: repeat(2, 1fr); }
+        }
+        @media (max-width: 600px) {
+            .gallery-grid { grid-template-columns: 1fr; }
+            .hero-logo { font-size: 2.8rem; }
+            .hero-sub { font-size: 0.9rem; letter-spacing: 3px; }
+            .hero-slogan { font-size: 1.3rem; }
+            section { padding: 50px 0; }
+            .section-title { font-size: 1.8rem; }
+        }
+
+        /* Cards */
+        .cards { display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 25px; }
+        .card {
+            background: linear-gradient(145deg, rgba(20,30,50,0.8), rgba(10,14,26,0.9));
+            border: 1px solid rgba(212,175,55,0.1);
+            border-radius: 16px; padding: 30px;
+            transition: all 0.3s;
+        }
+        .card:hover { border-color: rgba(212,175,55,0.3); transform: translateY(-3px); box-shadow: 0 10px 30px rgba(0,0,0,0.3); }
+        .card h3 { color: #d4af37; font-size: 1.2rem; margin-bottom: 12px; }
+        .card .price { font-size: 1.5rem; font-weight: 700; color: #fff; margin: 10px 0; }
+        .card .price small { font-size: 0.85rem; color: #8899aa; font-weight: 400; }
+        .card ul { list-style: none; margin-top: 10px; }
+        .card ul li { padding: 4px 0; color: #b0c4d8; font-size: 0.9rem; }
+        .card ul li::before { content: '✦ '; color: #d4af37; }
+
+        /* Table */
+        .table-wrap { overflow-x: auto; }
+        table { width: 100%; border-collapse: collapse; margin-top: 20px; }
+        th { background: rgba(212,175,55,0.12); color: #d4af37; padding: 14px 18px; text-align: left; font-weight: 600; font-size: 0.9rem; }
+        td { padding: 12px 18px; border-bottom: 1px solid rgba(212,175,55,0.08); font-size: 0.9rem; }
+        tr:hover td { background: rgba(212,175,55,0.03); }
+
+        /* Eco & Loyalty */
+        .eco-grid, .loyalty-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 20px; }
+        .eco-item, .loyalty-item {
+            background: rgba(20,30,50,0.6);
+            border: 1px solid rgba(212,175,55,0.08);
+            border-radius: 12px; padding: 25px;
+            text-align: center;
+        }
+        .eco-item .icon, .loyalty-item .icon { font-size: 2rem; margin-bottom: 10px; }
+        .eco-item h4, .loyalty-item h4 { color: #d4af37; margin-bottom: 8px; }
+        .eco-item p, .loyalty-item p { color: #b0c4d8; font-size: 0.9rem; }
+
+        /* Brands */
+        .brand-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 15px; }
+        .brand-item {
+            background: rgba(20,30,50,0.6);
+            border: 1px solid rgba(212,175,55,0.08);
+            border-radius: 12px; padding: 20px; text-align: center;
+        }
+        .brand-item .icon { font-size: 1.8rem; margin-bottom: 8px; }
+        .brand-item h4 { color: #d4af37; font-size: 0.95rem; margin-bottom: 5px; }
+        .brand-item p { color: #8899aa; font-size: 0.8rem; }
+
+        /* Contacts */
+        .contacts { text-align: center; }
+        .contacts a { color: #d4af37; text-decoration: none; font-size: 1.2rem; display: inline-block; margin: 8px 15px; transition: color 0.3s; }
+        .contacts a:hover { color: #f0d68a; }
+        .contacts .phone { font-size: 1.8rem; font-weight: 700; letter-spacing: 1px; }
+
+        /* Floating button */
+        .float-btn {
+            position: fixed; bottom: 30px; right: 30px; z-index: 100;
+            display: flex; flex-direction: column; gap: 10px;
+        }
+        .float-btn a {
+            width: 56px; height: 56px; border-radius: 50%;
+            display: flex; align-items: center; justify-content: center;
+            color: #fff; text-decoration: none; font-size: 1.4rem;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.4);
+            transition: all 0.3s;
+        }
+        .float-btn .call { background: #d4af37; }
+        .float-btn .top { background: rgba(20,30,50,0.9); border: 1px solid rgba(212,175,55,0.3); }
+        .float-btn a:hover { transform: scale(1.1); }
+
+        /* Footer */
+        footer {
+            text-align: center; padding: 40px 20px;
+            border-top: 1px solid rgba(212,175,55,0.08);
+            color: #556677; font-size: 0.85rem;
+        }
+        footer a { color: #d4af37; text-decoration: none; }
+
+        /* Badge */
+        .badge {
+            display: inline-block;
+            background: rgba(212,175,55,0.12);
+            color: #d4af37; padding: 4px 14px; border-radius: 50px;
+            font-size: 0.75rem; font-weight: 600; letter-spacing: 0.5px;
+            margin-bottom: 8px; border: 1px solid rgba(212,175,55,0.15);
+        }
+        .highlight { color: #d4af37; font-weight: 600; }
+    </style>
+</head>
+<body>
+
+<!-- Hero -->
+<section class="hero">
+    <div class="hero-content">
+        <div class="hero-logo">АЮ АЙ</div>
+        <div class="hero-sub">Медвежья Луна</div>
+        <div class="hero-slogan">«Плыви в ритме природы»</div>
+        <p class="hero-mission">
+            Открыть красоту Телецкого озера через активный отдых на сап-бордах, 
+            сочетая спорт, экологию и знакомство с алтайской культурой.
+        </p>
+        <div class="hero-nav">
+            <a href="#gallery">Фото</a>
+            <a href="#rent">Прокат</a>
+            <a href="#tours">Экскурсии</a>
+            <a href="#eco">Экология</a>
+            <a href="#contacts">Контакты</a>
+        </div>
+    </div>
+</section>
+
+<!-- Gallery -->
+<section id="gallery">
+    <div class="container">
+        <h2 class="section-title">🌙 Жизнь клуба</h2>
+        <div class="gallery-grid">
+            <div class="gallery-item">
+                <img src="https://static.mashagpt.ru/dl/mashagpt/mbge1ulqo9y2le6lghf1gjm2.webp" alt="Дети на сап-бордах на Телецком озере">
+                <div class="gallery-caption">☀️ Детская сап-прогулка — радость и солнце</div>
+            </div>
+            <div class="gallery-item">
+                <img src="https://static.mashagpt.ru/dl/mashagpt/owuyows8ial19rpqv8ib430n.webp" alt="Группа у сап-бордов на базе">
+                <div class="gallery-caption">🚣 Готовимся к приключению — старт с базы</div>
+            </div>
+            <div class="gallery-item">
+                <img src="https://static.mashagpt.ru/dl/mashagpt/to8a80aq8grgw14d389o34iy.webp" alt="Инструктор с группой на фоне гор">
+                <div class="gallery-caption">🏔️ Инструктаж перед выходом на воду</div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- Rent -->
+<section id="rent">
+    <div class="container">
+        <h2 class="section-title">🛶 Прокат сап-бордов</h2>
+        <div class="cards">
+            <div class="card">
+                <div class="badge">Для всех</div>
+                <h3>Стандартный сап</h3>
+                <p class="price">1 000 ₽ <small>/ час</small></p>
+                <p style="color:#8899aa; font-size:0.85rem;">2 часа — 1 500 ₽ • День — 2 500 ₽</p>
+                <ul>
+                    <li>Доска 10–12 ft</li>
+                    <li>Весло</li>
+                    <li>Спасательный жилет</li>
+                    <li>Инструктаж</li>
+                </ul>
+            </div>
+            <div class="card">
+                <div class="badge">Для двоих</div>
+                <h3>Тандем сап</h3>
+                <p class="price">1 500 ₽ <small>/ час</small></p>
+                <p style="color:#8899aa; font-size:0.85rem;">2 часа — 2 500 ₽ • День — 4 000 ₽</p>
+                <ul>
+                    <li>Идеально для пар и семей</li>
+                    <li>Два весла</li>
+                    <li>Два жилета</li>
+                    <li>Инструктаж</li>
+                </ul>
+            </div>
+            <div class="card">
+                <div class="badge">Для профи</div>
+                <h3>Спортивный сап</h3>
+                <p class="price">1 200 ₽ <small>/ час</small></p>
+                <p style="color:#8899aa; font-size:0.85rem;">2 часа — 2 000 ₽ • День — 3 500 ₽</p>
+                <ul>
+                    <li>Узкая обтекаемая доска</li>
+                    <li>Карбоновое весло</li>
+                    <li>Для тренировок</li>
+                    <li>Инструктаж</li>
+                </ul>
+            </div>
+        </div>
+
+        <h3 style="color:#d4af37; margin-top:40px; text-align:center;">🧰 Аксессуары отдельно</h3>
+        <div class="table-wrap">
+            <table>
+                <tr><th>Аксессуар</th><th>1 час</th><th>Сутки</th></tr>
+                <tr><td>Весло карбоновое</td><td>200 ₽</td><td>500 ₽</td></tr>
+                <tr><td>Спасательный жилет</td><td>150 ₽</td><td>400 ₽</td></tr>
+                <tr><td>Гермомешок 20 л</td><td>100 ₽</td><td>250 ₽</td></tr>
+                <tr><td>Гидрокостюм</td><td>300 ₽</td><td>800 ₽</td></tr>
+            </table>
+        </div>
+    </div>
+</section>
+
+<!-- Family packages -->
+<section style="background: rgba(20,30,50,0.3);">
+    <div class="container">
+        <h2 class="section-title">👨‍👩‍👧‍👦 Семейные пакеты</h2>
+        <div class="cards">
+            <div class="card">
+                <div class="badge">Скидка 15%</div>
+                <h3>Стандартный семейный</h3>
+                <p class="price">3 400 ₽ <small>/ день</small></p>
+                <ul>
+                    <li>2 стандартных сапа</li>
+                    <li>Полный комплект</li>
+                    <li>Экономия 600 ₽</li>
+                </ul>
+            </div>
+            <div class="card">
+                <div class="badge">Скидка 15%</div>
+                <h3>Семейный + ребёнок</h3>
+                <p class="price">5 100 ₽ <small>/ день</small></p>
+                <ul>
+                    <li>2 стандартных сапа</li>
+                    <li>1 детский сап</li>
+                    <li>Экономия 900 ₽</li>
+                </ul>
+            </div>
+            <div class="card">
+                <div class="badge">Скидка 15%</div>
+                <h3>Тандем + стандарт</h3>
+                <p class="price">5 950 ₽ <small>/ день</small></p>
+                <ul>
+                    <li>Тандем сап</li>
+                    <li>1 стандартный сап</li>
+                    <li>Экономия 1 050 ₽</li>
+                </ul>
+            </div>
+            <div class="card">
+                <div class="badge">Скидка 15%</div>
+                <h3>Большая семья</h3>
+                <p class="price">12 750 ₽ <small>/ день</small></p>
+                <ul>
+                    <li>2 тандем сапа</li>
+                    <li>2 стандартных сапа</li>
+                    <li>Экономия 2 250 ₽</li>
+                </ul>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- Tours -->
+<section id="tours">
+    <div class="container">
+        <h2 class="section-title">🏞️ Экскурсионные маршруты</h2>
+        <p style="text-align:center; color:#8899aa; margin-bottom:30px;">Все маршруты — с гидом, легендами Алтая и чаем на телецких травах 🍵</p>
+        <div class="cards">
+            <div class="card">
+                <div class="badge">🌿 Эко-тропа</div>
+                <h3>«Третья речка»</h3>
+                <p class="price">3 000 ₽ <small>/ чел.</small></p>
+                <p style="color:#8899aa; font-size:0.85rem;">Индивидуально — 6 000 ₽</p>
+                <ul>
+                    <li>⏱ 4,5 часа</li>
+                    <li>Вдоль северного берега</li>
+                    <li>Пеший поход к водопаду</li>
+                    <li>Купание в водопаде</li>
+                    <li>🍵 Чай с алтайскими сладостями</li>
+                    <li>🍵 Чай с мёдом и алтайским сыром</li>
+                </ul>
+            </div>
+            <div class="card">
+                <div class="badge">🪨 Легенды</div>
+                <h3>«Каменная бухта»</h3>
+                <p class="price">3 000 ₽ <small>/ чел.</small></p>
+                <p style="color:#8899aa; font-size:0.85rem;">Индивидуально — 6 000 ₽</p>
+                <ul>
+                    <li>⏱ 3,5 часа</li>
+                    <li>К месту падения метеорита</li>
+                    <li>Осмотр Каменного залива</li>
+                    <li>Купание (по желанию)</li>
+                    <li>🍵 Чай с алтайскими сладостями</li>
+                    <li>🍵 Чай с мёдом и алтайским сыром</li>
+                </ul>
+            </div>
+            <div class="card">
+                <div class="badge">🌸 Сезонный</div>
+                <h3>«Цветение Огоньков»</h3>
+                <p class="price">2 500 ₽ <small>/ чел.</small></p>
+                <p style="color:#8899aa; font-size:0.85rem;">От 4-х чел. • Индивидуально — 10 000 ₽</p>
+                <ul>
+                    <li>⏱ 2,5 часа</li>
+                    <li>К заливным лугам</li>
+                    <li>Огненно-оранжевые цветы</li>
+                    <li>🍵 Чай с алтайскими сладостями</li>
+                    <li>🍵 Чай с мёдом и алтайским сыром</li>
+                    <li style="color:#d4af37;">🗓 Конец мая — начало июня</li>
+                </ul>
+            </div>
+            <div class="card">
+                <div class="badge">🌅 Рассвет</div>
+                <h3>«Восход на Золотых песках»</h3>
+                <p class="price">3 500 ₽ <small>/ чел.</small></p>
+                <p style="color:#8899aa; font-size:0.85rem;">От 4-х чел. • Индивидуально — 14 000 ₽</p>
+                <ul>
+                    <li>⏱ 4 часа</li>
+                    <li>Уединённый берег</li>
+                    <li>Восход на озере</li>
+                    <li>Панорамный вид</li>
+                    <li>🍵 Чай с алтайскими сладостями</li>
+                    <li>🍵 Чай с мёдом и алтайским сыром</li>
+                </ul>
+            </div>
+            <div class="card">
+                <div class="badge">🌇 Вечер</div>
+                <h3>«Закат над бухтой»</h3>
+                <p class="price">2 000 ₽ <small>/ чел.</small></p>
+                <p style="color:#8899aa; font-size:0.85rem;">Индивидуально — 4 000 ₽</p>
+                <ul>
+                    <li>⏱ 2 часа</li>
+                    <li>Закатные краски</li>
+                    <li>Незабываемые фото</li>
+                    <li>Тишина алтайского вечера</li>
+                    <li>🍵 Чай с алтайскими сладостями</li>
+                    <li>🍵 Чай с мёдом и алтайским сыром</li>
+                </ul>
+            </div>
+            <div class="card">
+                <div class="badge">👨‍👩‍👧‍👦 Для семьи</div>
+                <h3>«Прогулка по реке Лебедь»</h3>
+                <p class="price">5 000 ₽ <small>/ чел.</small></p>
+                <p style="color:#8899aa; font-size:0.85rem;">Мин. 5 чел. • Индивидуально — 25 000 ₽</p>
+                <ul>
+                    <li>⏱ 5 часов</li>
+                    <li>Для детей и родителей</li>
+                    <li>Фотосессия у скал</li>
+                    <li>Купание на песчаном берегу</li>
+                    <li>🍵 Чай с алтайскими сладостями</li>
+                    <li>🍵 Чай с мёдом и алтайским сыром</li>
+                </ul>
+            </div>
+            <div class="card">
+                <div class="badge">💑 Для двоих</div>
+                <h3>Романтический тур</h3>
+                <p class="price">от 2 000 ₽ <small>/ час</small></p>
+                <ul>
+                    <li>Индивидуальная прогулка</li>
+                    <li>Запуск свечей (+5 000 ₽)</li>
+                    <li>Китайские фонарики (по запросу)</li>
+                    <li>Пикник с алтайскими угощениями</li>
+                    <li>Сопровождение гида-инструктора</li>
+                </ul>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- Special programs -->
+<section style="background: rgba(20,30,50,0.3);">
+    <div class="container">
+        <h2 class="section-title">🌟 Специальные программы</h2>
+        <div class="cards">
+            <div class="card">
+                <div class="badge">🌕 Ночная</div>
+                <h3>«Ночь Медвежьей Луны»</h3>
+                <p>Ночная экскурсия по озеру в ясную лунную ночь. Мистика и красота Алтая под луной.</p>
+            </div>
+            <div class="card">
+                <div class="badge">🔥 6–7 июля</div>
+                <h3>«Ночь Ивана Купала»</h3>
+                <p>Прогулка по «лунному озеру», плетём венки, гадаем с берега, зажигаем свечи, провожая венки.</p>
+            </div>
+            <div class="card">
+                <div class="badge">🎨 Для души</div>
+                <h3>Арт-ретрит</h3>
+                <p>Эмоциональная разгрузка через единение с природой и отражение в искусстве. Для девушек.</p>
+            </div>
+            <div class="card">
+                <div class="badge">🤝 Для команд</div>
+                <h3>Корпоративный тимбилдинг</h3>
+                <p>Командные эстафеты и игры на воде. Сплочение коллектива на фоне Телецкого озера.</p>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- Eco -->
+<section id="eco">
+    <div class="container">
+        <h2 class="section-title">🌿 Экологическая ответственность</h2>
+        <div class="eco-grid">
+            <div class="eco-item">
+                <div class="icon">♻️</div>
+                <h4>Раздельный сбор мусора</h4>
+                <p>На базе установлены контейнеры для раздельного сбора отходов</p>
+            </div>
+            <div class="eco-item">
+                <div class="icon">🌊</div>
+                <h4>Эко-экскурсии</h4>
+                <p>Уборка береговой линии — гости участвуют добровольно</p>
+            </div>
+            <div class="eco-item">
+                <div class="icon">🤝</div>
+                <h4>Сотрудничество с заповедником</h4>
+                <p>Часть прибыли направляется на охрану природы Телецкого озера</p>
+            </div>
+            <div class="eco-item">
+                <div class="icon">🧴</div>
+                <h4>Биоразлагаемые средства</h4>
+                <p>Используем экологичную косметику и средства для ухода за оборудованием</p>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- Loyalty -->
+<section style="background: rgba(20,30,50,0.3);">
+    <div class="container">
+        <h2 class="section-title">🎁 Программы лояльности</h2>
+        <div class="loyalty-grid">
+            <div class="loyalty-item">
+                <div class="icon">🎫</div>
+                <h4>Абонемент на 5 прокатов</h4>
+                <p>Скидка <strong>15%</strong> при покупке абонемента</p>
+            </div>
+            <div class="loyalty-item">
+                <div class="icon">👨‍👩‍👧‍👦</div>
+                <h4>Семейный пакет</h4>
+                <p>2 взрослых + 1 ребёнок — скидка <strong>20%</strong></p>
+            </div>
+            <div class="loyalty-item">
+                <div class="icon">🤝</div>
+                <h4>Реферальная система</h4>
+                <p>Приведи друга — получи бонус на следующий прокат</p>
+            </div>
+            <div class="loyalty-item">
+                <div class="icon">🎂</div>
+                <h4>Именинникам</h4>
+                <p>В день рождения — <strong>бесплатный</strong> прокат на 1 час</p>
+            </div>
+            <div class="loyalty-item">
+                <div class="icon">👶</div>
+                <h4>Многодетным семьям</h4>
+                <p>Скидка <strong>20%</strong> на все услуги</p>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- Brand -->
+<section>
+    <div class="container">
+        <h2 class="section-title">🎨 Бренд и атрибутика</h2>
+        <div class="brand-grid">
+            <div class="brand-item">
+                <div class="icon">🐻</div>
+                <h4>Логотип</h4>
+                <p>Силуэт медведя на фоне луны в алтайском стиле</p>
+            </div>
+            <div class="brand-item">
+                <div class="icon">🎨</div>
+                <h4>Цвета бренда</h4>
+                <p>Глубокий синий • Зелёный • Серебряный • Коричневый</p>
+            </div>
+            <div class="brand-item">
+                <div class="icon">📢</div>
+                <h4>Слоган</h4>
+                <p>«Плыви в ритме природы»</p>
+            </div>
+            <div class="brand-item">
+                <div class="icon">👕</div>
+                <h4>Мерч</h4>
+                <p>Фирменные жилеты, футболки, кепки, наклейки</p>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- Deposit Table -->
+<section style="background: rgba(20,30,50,0.3);">
+    <div class="container">
+        <h2 class="section-title">🔒 Залоги за оборудование</h2>
+        <div class="table-wrap">
+            <table>
+                <tr><th>Оборудование</th><th>Сумма залога</th></tr>
+                <tr><td>Стандартный сап (доска + весло + жилет)</td><td>10 000 ₽</td></tr>
+                <tr><td>Тандем сап (доска + 2 весла + 2 жилета)</td><td>15 000 ₽</td></tr>
+                <tr><td>Спортивный
